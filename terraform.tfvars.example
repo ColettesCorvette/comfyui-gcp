@@ -1,0 +1,33 @@
+# =============================================================================
+# ComfyUI on GCP - Terraform Variables Example
+# =============================================================================
+# Copy this file to terraform.tfvars and fill in your values:
+#   cp terraform.tfvars.example terraform.tfvars
+# =============================================================================
+
+# REQUIRED - Your GCP Project ID
+project_id = "your-gcp-project-id"
+
+# OPTIONAL - Override defaults if needed
+# region     = "europe-west4"
+# zone       = "europe-west4-c"
+
+# =============================================================================
+# IAP ACCESS - Users allowed to access via IAP tunnel
+# =============================================================================
+# Add your Google account email to grant access
+# Format: "user:email@gmail.com" or "serviceAccount:sa@project.iam.gserviceaccount.com"
+
+iap_tunnel_users = [
+  "user:your-email@gmail.com"
+]
+
+# =============================================================================
+# OPTIONAL OVERRIDES
+# =============================================================================
+
+# COMPUTE - Machine type (g2-standard-8 has NVIDIA L4 GPU)
+# machine_type = "g2-standard-8"
+
+# STORAGE - Persistent disk size in GB
+# data_disk_size = 100

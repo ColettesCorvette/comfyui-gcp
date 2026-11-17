@@ -1,0 +1,27 @@
+services:
+  comfyui:
+    image: cyd000/comfy-custom:v1
+    container_name: comfyui
+    restart: always
+    ports:
+      - "8188:8188"
+    volumes:
+      # Mapping vers la structure ai-dock (/workspace/ComfyUI)
+      - /mnt/comfy-data/models:/workspace/ComfyUI/models
+      - /mnt/comfy-data/output:/workspace/ComfyUI/output
+      - /mnt/comfy-data/input:/workspace/ComfyUI/input
+      - /mnt/comfy-data/user:/workspace/ComfyUI/user
+      - /mnt/comfy-data/custom_nodes:/workspace/ComfyUI/custom_nodes
+    environment:
+      - DIRECT_ADDRESS=0.0.0.0
+      - DIRECT_PORT=8188
+      - WEB_ENABLE_AUTH=false
+      - CF_QUICK_TUNNELS=false
+      - COMFYUI_FLAGS=--listen --preview-method auto --use-quad-cross-attention
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
